@@ -42,6 +42,18 @@ struct ContentView: View {
             TextField("血液型を入力してください", text: $bloodType)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(10)
+            Text("今日の日付: \(today.year)/\(today.month)/\(today.day)")
+        }
+        .padding()
+        .onAppear {
+            // 今日の日付を取得して設定
+            let todayDate = Date()
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.year, .month, .day], from: todayDate)
+            today.year = components.year ?? 0
+            today.month = components.month ?? 0
+            today.day = components.day ?? 0
+            
         }
         .padding()
     }
